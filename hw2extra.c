@@ -28,8 +28,6 @@ int main ( int argc, char *argv[]) {
 		exit(-1);
 	}
 
-    fprintf(stdout, "Stub 000\n");
-
     // if the file at the end of the cmd line isn't a dir ... error
     if((dir = open(argv[argc - 1], O_DIRECTORY)) == 0)
     {
@@ -37,15 +35,11 @@ int main ( int argc, char *argv[]) {
 		exit(-1);
     }
 
-    fprintf(stdout, "Stub 001\n");
-
     for(int i = 1; i < argc - 1; i++)
     {
         // reasonably large buffer, snprintf will not overstep here.
         char outName[100];
         snprintf(outName, 100, "%s/%s", argv[argc - 1], argv[i]);
-
-        fprintf(stdout, "Driver: %s\n", outName);
 
         /* OPEN INPUT FILE */
         if((infile = open(argv[i], O_RDONLY)) == -1)
@@ -80,9 +74,6 @@ int main ( int argc, char *argv[]) {
         close(infile);
         close(outfile);
     }
-
-    fprintf(stdout, "Stub 002\n");
-
     close(dir);
 
     return(0);
